@@ -25,7 +25,7 @@ class Login extends Component {
                 pass: this.state.pass
             })
 
-            if(res.data.data){
+            if (res.data.data) {
                 console.log("check ", res.data.data[0].id)
                 await axios.post('http://localhost:5000/logs', {
                     id_user: res.data.data[0].id
@@ -34,10 +34,9 @@ class Login extends Component {
                 console.log(logs.data)
                 this.props.setUserLogin(true, logs.data);
 
-            }
-            else{
-                this.state.user=""
-                this.state.pass=""
+            } else {
+                this.state.user = ""
+                this.state.pass = ""
             }
         } catch (err) {
             console.log(err)
@@ -52,13 +51,15 @@ class Login extends Component {
     render() {
         return (
             <div className="Login">
-                <form method="POST" onSubmit={this.handleSubmit} className="Form">
-                    <input type="text" id="user" placeholder="User name" onChange={this.handleChange}
-                           value={this.state.user}/>
-                    <input type="password" id="pass" placeholder="Password" onChange={this.handleChange}
-                           value={this.state.pass}/>
-                    <input type="submit" value="Login" disabled={this.validateForm()}/>
-                </form>
+                <div className="loginWrapper">
+                    <form method="POST" onSubmit={this.handleSubmit} className="Form">
+                        <input type="text" id="user" placeholder="User name" className="form-control" onChange={this.handleChange}
+                               value={this.state.user}/>
+                        <input type="password" id="pass" placeholder="Password"  className="form-control" onChange={this.handleChange}
+                               value={this.state.pass}/>
+                        <input type="submit" value="Login" disabled={this.validateForm()} className="btn-primary" style={{margin: "10px"}}/>
+                    </form>
+                </div>
             </div>
         );
     }
